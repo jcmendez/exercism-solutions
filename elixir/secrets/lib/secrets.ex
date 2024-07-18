@@ -1,29 +1,58 @@
 defmodule Secrets do
+  @moduledoc """
+  This module contains functions that perform operations on numbers with a secret number.
+  """
+
+  @doc """
+  Adds a secret number to the input number
+  """
+  @spec secret_add(integer()) :: (integer() -> integer())
   def secret_add(secret) do
-    # Please implement the secret_add/1 function
+    &(&1 + secret)
   end
 
+  @doc """
+  Subtracts a secret number from the input number
+  """
+  @spec secret_subtract(integer()) :: (integer() -> integer())
   def secret_subtract(secret) do
-    # Please implement the secret_subtract/1 function
+    &(&1 - secret)
   end
 
+  @doc """
+  Multiplies the input number by a secret number
+  """
+  @spec secret_multiply(integer()) :: (integer() -> integer())
   def secret_multiply(secret) do
-    # Please implement the secret_multiply/1 function
+    &(&1 * secret)
   end
 
+  @doc """
+  Divides the input number by a secret number
+  """
+  @spec secret_divide(integer()) :: (integer() -> integer())
   def secret_divide(secret) do
-    # Please implement the secret_divide/1 function
+    &trunc(&1 / secret)
   end
 
+  @doc """
+  Performs a bitwise AND operation with a secret number
+  """
+  @spec secret_and(integer()) :: (integer() -> integer())
   def secret_and(secret) do
-    # Please implement the secret_and/1 function
+    &Bitwise.band(&1, secret)
   end
 
+  @doc """
+  Performs a bitwise OR operation with a secret number
+  """
+  @spec secret_xor(integer()) :: (integer() -> integer())
   def secret_xor(secret) do
-    # Please implement the secret_xor/1 function
+    &Bitwise.bxor(&1, secret)
   end
 
+  @spec secret_combine((integer() -> integer()), (integer() -> integer())) :: (integer() -> integer())
   def secret_combine(secret_function1, secret_function2) do
-    # Please implement the secret_combine/2 function
+    fn x -> secret_function2.(secret_function1.(x)) end
   end
 end
